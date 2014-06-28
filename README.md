@@ -14,6 +14,15 @@ This is a small, bare-bones PHP authentication API and client-facing login syste
 
 ## Common Errors
 
+    config.php is missing or has the wrong permissions.
+
+The server is missing a `config.php` file.  Make a copy of `php/config.template.php` named `php/config.php` and fill in the fields inside the file.
+
     MySQL credentials are not configured.
 
-The server is missing a `mysql.config.php` file.  Make a copy of `php/mysql.config.template.php` named `php/mysql.config.php` and fill in the fields inside the file.
+Your server's `config.php` file is missing MySQL authentication information.  Fill in the `$MYSQL_CONFIG` array.
+
+    The API URL is not configured.
+
+Your server's `config.php` file is missing an API URL.  Fill in a value for the `$API_URL` variable.
+
