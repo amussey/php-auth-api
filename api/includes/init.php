@@ -146,3 +146,33 @@ function validate_session($session_id) {
 
     return $users[0];
 }
+
+
+function confirm_unused_name($username, $user_id = null) {
+    global $db;
+
+    if ($session_id !== null) {
+        $query = $db->prepare("SELECT id
+            FROM users
+            WHERE
+                (username = :username OR
+                email = :username) AND
+                id != :user_id
+            LIMIT 1");
+        $query->execute(array(":username" => $username, ":user_id" => $user_id));
+        $users = $query->fetchAll(PDO::FETCH_ASSOC);
+
+
+    } else {
+        $query = $db->prepare("SELECT id
+            FROM users
+            WHERE
+                username = :username OR
+                email = :username
+            LIMIT 1");
+        $query->execute(array(":username" => $username));
+        $users = $query->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    return (count($users) == 0);
+}
