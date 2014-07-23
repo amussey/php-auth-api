@@ -6,19 +6,21 @@
 CREATE TABLE IF NOT EXISTS `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(128) NOT NULL,
-  `email` varchar(256) NOT NULL,
+  `email` varchar(240) NOT NULL,
   `first_name` varchar(256) NOT NULL DEFAULT '',
   `last_name` varchar(256) NOT NULL DEFAULT '',
   `password` varchar(256) NOT NULL,
   `creation` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `last_login` datetime NOT NULL
-  PRIMARY KEY (`id`)
+  `last_login` timestamp NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `username` (`username`),
+  UNIQUE KEY `email` (`email`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=0 ;
 
 CREATE TABLE IF NOT EXISTS `sessions` (
   `id` varchar(64) NOT NULL DEFAULT '',
   `user_id` int(11) NOT NULL,
-  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `creation` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 ;
 
 CREATE TABLE IF NOT EXISTS `user_preferences` (
@@ -26,6 +28,7 @@ CREATE TABLE IF NOT EXISTS `user_preferences` (
   `user_id` int(11) NOT NULL,
   `key` varchar(128) NOT NULL,
   `value` varchar(512) NOT NULL,
+  `updated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   UNIQUE KEY `USER_PREFERENCE` (`user_id`,`key`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
