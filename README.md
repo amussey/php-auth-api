@@ -24,5 +24,5 @@ Your server's `config.php` file is missing MySQL authentication information.  Fi
 
     The API URL is not configured.
 
-Your server's `config.php` file is missing an API URL.  Fill in a value for the `$API_URL` variable.
+Your server's `config.php` file is missing an API URL.  Fill in a value for the definition of `API_URL`.
 

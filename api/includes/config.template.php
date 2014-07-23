@@ -10,6 +10,7 @@ $MYSQL_CONFIG = array(
 
 define('DEBUG', false);
 define('API_URL', '');
+define('SESSION_ID_LENGTH', 34);
 
 // AUTH_REQUIRE_EMAIL  AUTH_EMAIL_EQUALS_USERNAME
 // true                true                        # email/password
